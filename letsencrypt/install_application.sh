@@ -70,7 +70,7 @@ echo -e "\n"
 # IMPORTANT!! To run docker-compose properly, is mandatory that nginx.tmpl file is located in the same directory as it.
 # Besides, inside of docker-compose file, the template must be invoked in this way ./nginx.tmpl
 curl https://raw.githubusercontent.com/jwilder/nginx-proxy/master/nginx.tmpl > ./nginx.tmpl
-echo "** nginx.tmpl templete has been downloaded in $(pwd) dicerctory"
+echo "** nginx.tmpl templete has been downloaded in $(pwd) directory"
 echo -e "\n"
 echo -e "\n"
 
@@ -82,6 +82,6 @@ echo -e "\n"
 
 # 5. Start proxy
 docker-compose up -d
-echo "** Every compotainer have been created"
+echo "** Every container have been created, and all of them are running"
 echo -e "\n"
 echo -e "\n"

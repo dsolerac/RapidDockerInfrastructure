@@ -5,7 +5,7 @@
 # This script make easy the docker and docker-compose installation and the user
 # creation for the application.
 # This script must be executed the first with root privileges and when it finishes,
-# the install_application.sh file must be executed with user created here.
+# the install_application.sh file must be executed with user created or modified here.
 ######################################################################################
 ######################################################################################
 
@@ -45,15 +45,15 @@ groups $nombre
 echo -e "\n"
 echo -e "\n"
 
-echo -e "***********************************"
-echo "  Installing docker in ubuntu ..."
-echo -e "***********************************"
+echo -e "*****************************************************"
+echo "  Installing docker (17.12.1~ce-0~ubuntu) in ubuntu ..."
+echo -e "*****************************************************"
 
 apt-get update
 echo -e "\n"
 echo -e "\n"
 
-apt-get install \
+apt-get install --assume-yes \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -81,7 +81,7 @@ apt-get update
 echo -e "\n"
 echo -e "\n"
 
-apt-get install docker-ce=17.12.1~ce-0~ubuntu
+apt-get install --assume-yes docker-ce=17.12.1~ce-0~ubuntu
 echo -e "\n"
 echo -e "\n"
 
@@ -114,6 +114,7 @@ echo -e "\n"
 echo -e "\n"
 echo -e "*******************************************************************************************"
 echo "  ¡¡¡¡¡Please, to finish the installation you must exit of this current bash!!!!!"
+echo -e "\n"
 echo "  After that, you should run the ./install_application.sh with the newly created user ($nombre)"
 echo -e "*******************************************************************************************"
 
