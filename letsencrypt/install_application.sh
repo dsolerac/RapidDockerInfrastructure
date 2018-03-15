@@ -6,6 +6,11 @@
 #
 # This file is an adaptation based on the original of evertramos (thanks):
 # https://github.com/evertramos/docker-compose-letsencrypt-nginx-proxy-companion/blob/master/start.sh
+#
+# This script must be executed after execution of install_user_docker.sh file, to leverege the user created for install
+# the docker lestencrypt containers. This user must to be used to execute this script, because this user belong to the
+# sudo users group, due to will run a docker-compose file.
+#
 ######################################################################################
 ######################################################################################
 
