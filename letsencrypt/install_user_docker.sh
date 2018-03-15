@@ -45,30 +45,44 @@ groups $nombre
 echo -e "\n"
 echo -e "\n"
 
-apt-get upgrade
-echo -e "\n"
-apt install htop
-
-echo -e "\n"
-echo -e "\n"
 echo -e "***********************************"
 echo "  Installing docker in ubuntu xenial ..."
 echo -e "***********************************"
 
-#sh -c "echo deb https://apt.dockerproject.org/repo ubuntu-xenial main > /etc/apt/sources.list.d/docker.list"
-sudo add-apt-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main'
-echo -e "\n"
-more /etc/apt/sources.list.d/docker.list
+apt-get update
 echo -e "\n"
 echo -e "\n"
 
-apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys
+apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common \
+    htop
+echo -e "\n"
 echo -e "\n"
 
-apt-get install docker-engine
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+echo -e "\n"
+echo -e "\n"
+
+apt-key fingerprint 0EBFCD88
+echo -e "\n"
+echo -e "\n"
+
+add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+echo -e "\n"
 echo -e "\n"
 
 apt-get update
+echo -e "\n"
+echo -e "\n"
+
+apt-get install docker-ce=17.12.1~ce-0~ubuntu
+echo -e "\n"
 echo -e "\n"
 
 usermod -a -G docker $nombre
@@ -79,6 +93,32 @@ echo -e "\n"
 
 su - $nombre -c "docker --version"
 echo "** docker was installed succesfully"
+
+
+##sh -c "echo deb https://apt.dockerproject.org/repo ubuntu-xenial main > /etc/apt/sources.list.d/docker.list"
+#sudo add-apt-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main'
+#echo -e "\n"
+#more /etc/apt/sources.list.d/docker.list
+#echo -e "\n"
+#echo -e "\n"
+#
+#apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys
+#echo -e "\n"
+#
+#apt-get install docker-engine
+#echo -e "\n"
+#
+#apt-get update
+#echo -e "\n"
+#
+#usermod -a -G docker $nombre
+#echo "** The $nombre user belong to the follow groups:"
+#groups $nombre
+#echo -e "\n"
+#echo -e "\n"
+#
+#su - $nombre -c "docker --version"
+#echo "** docker was installed succesfully"
 
 
 echo -e "\n"
