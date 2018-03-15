@@ -55,7 +55,11 @@ echo -e "***********************************"
 echo "  Installing docker in ubuntu xenial ..."
 echo -e "***********************************"
 
-sh -c "echo deb https://apt.dockerproject.org/repo ubuntu-xenial main > /etc/apt/sources.list.d/docker.list"
+#sh -c "echo deb https://apt.dockerproject.org/repo ubuntu-xenial main > /etc/apt/sources.list.d/docker.list"
+sudo add-apt-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main'
+echo -e "\n"
+more /etc/apt/sources.list.d/docker.list
+echo -e "\n"
 echo -e "\n"
 
 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys
