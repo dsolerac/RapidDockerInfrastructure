@@ -84,10 +84,5 @@ echo "** docker-compose was installed succesfully"
 echo -e "\n"
 echo -e "\n"
 echo -e "*******************************************************************************************"
-echo "  Please after that, run the install_application.sh with the newly created user ($nombre)"
+echo "  Please after that, run the ./install_application.sh with the newly created user ($nombre)"
 echo -e "*******************************************************************************************"
-
-
-echo "** Current user: " $USER
-su - $name
-echo "** It has just changed into the new user created, henceforth the installation will continue with: " $USER
