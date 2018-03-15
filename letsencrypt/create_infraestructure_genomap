@@ -1,0 +1,26 @@
+docker run  --name nginx-gapp -d \
+            -p 80:80 -p 443:443 --net letsencrypt \
+            -v /home/genomapp/app/volumes/nginx/conf.d:/etc/nginx/conf.d \
+            -v /home/genomapp/app/volumes/nginx/vhost.d:/etc/nginx/vhost.d \
+            -v /home/genomapp/app/volumes/usr/share/nginx/html:/usr/share/nginx/html \
+            -v /home/genomapp/app/volumes/etc/nginx/certs:/etc/nginx/certs:ro \
+            --label com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy \
+             nginx:1.12
+             
+             
+docker run  --name nginx-gen-gapp -d \
+            --net letsencrypt \
+            --volumes-from nginx-gapp \
+            -v /home/genomapp/app/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro \
+            -v /var/run/docker.sock:/tmp/docker.sock:ro \
+            --label com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen \
+             jwilder/docker-gen \
+            -notify-sighup nginx -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf             
+            
+
+docker run  --name nginx-letsencrypt-gapp -d \
+            --net letsencrypt  \
+            --volumes-from nginx-gapp \
+            -v /home/genomapp/app/volumes/etc/nginx/certs:/etc/nginx/certs:rw \
+            -v /var/run/docker.sock:/var/run/docker.sock:ro \
+            jrcs/letsencrypt-nginx-proxy-companion            

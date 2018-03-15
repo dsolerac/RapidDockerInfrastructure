@@ -107,6 +107,7 @@ else
     exit 1
 fi
 
+cp $APP_ROOT_DIRECTORY_PATH/
 
 # 2. Create docker network
 docker network create $NETWORK
