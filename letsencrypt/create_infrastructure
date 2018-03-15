@@ -1,0 +1,42 @@
+//https://medium.com/@apourtaghi71/deploying-spring-boot-applications-behind-a-reverse-proxy-with-the-help-of-docker-509a00a3a56b
+
+docker network create greetings
+
+docker run  --name nginx-gr -d \
+            -p 80:80 -p 443:443 --net greetings \
+            -v /home/dsolerac/greetings/volumes/nginx/conf.d:/etc/nginx/conf.d \
+            -v /home/dsolerac/greetings/volumes/nginx/vhost.d:/etc/nginx/vhost.d \
+            -v /home/dsolerac/greetings/volumes/usr/share/nginx/html:/usr/share/nginx/html \
+            -v /home/dsolerac/greetings/volumes/etc/nginx/certs:/etc/nginx/certs:ro \
+            --label com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy \
+             nginx:1.12
+
+docker run  --name nginx-gen-gr -d \
+            --net greetings \
+            --volumes-from nginx-gr \
+            -v /home/dsolerac/greetings/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro \
+            -v /var/run/docker.sock:/tmp/docker.sock:ro \
+            --label com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen \
+             jwilder/docker-gen \
+            -notify-sighup nginx -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
+
+docker run  --name nginx-letsencrypt-gr -d \
+            --net greetings  \
+            --volumes-from nginx-gr \
+            -v /home/dsolerac/greetings/volumes/etc/nginx/certs:/etc/nginx/certs:rw \
+            -v /var/run/docker.sock:/var/run/docker.sock:ro \
+            jrcs/letsencrypt-nginx-proxy-companion
+
+docker build -t dsolerac:greetings .
+
+
+docker run -d   --name greetings-app  -p 127.0.0.1:8080:8080 --net greetings -e VIRTUAL_HOST="dsolerac.com, www.dsolerac.com" -e LETSENCRYPT_HOST="dsolerac.com, www.dsolerac.com" -e LETSENCRYPT_EMAIL="dsolerac@gmail.com" -e HTTPS_METHOD="nohttp" dsolerac/greetings
+
+docker run  --name greetings-app-rem -d \
+            -p 127.0.0.1:8080:8080 \
+            --net greetings \
+            -e VIRTUAL_HOST="remlists.com, www.remlists.com" \
+            -e LETSENCRYPT_HOST="remlists.com, www.remlists.com" \
+            -e LETSENCRYPT_EMAIL="dsolerac@gmail.com" \
+            -e HTTPS_METHOD="redirect" \
+            dsolerac/greetings
