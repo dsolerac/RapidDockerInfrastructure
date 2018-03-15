@@ -29,7 +29,7 @@ services:
     image: jwilder/docker-gen
     container_name: ${DOCKER_GEN:-nginx-gen}
     volumes:
-      - ${APP_VOLUMES_FILES_PATH:-${APP_VOLUMES_FILES_PATH:-./volumes}}/nginx/conf.d:/etc/nginx/conf.d
+      - ${APP_VOLUMES_FILES_PATH:-./volumes}/nginx/conf.d:/etc/nginx/conf.d
       - ${APP_VOLUMES_FILES_PATH:-./volumes}/nginx/vhost.d:/etc/nginx/vhost.d
       - ${APP_VOLUMES_FILES_PATH:-./volumes}/usr/share/nginx/html:/usr/share/nginx/html
       - ${APP_VOLUMES_FILES_PATH:-./volumes}/etc/nginx/certs:/etc/nginx/certs:ro
