@@ -115,7 +115,7 @@ echo -e "\n"
 echo -e "*******************************************************************************************"
 echo "  ¡¡¡¡¡Please, to finish the installation you must exit of this current bash!!!!!"
 echo -e "\n"
-echo "  After that, you should run the ./install_application.sh with the newly created user ($nombre)"
+echo "  After that, you should run the install_application.sh with the newly created or modified user ($nombre)"
 echo -e "*******************************************************************************************"
 
 exit

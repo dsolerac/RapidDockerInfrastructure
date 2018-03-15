@@ -11,7 +11,8 @@
 # the docker lestencrypt containers. This user (just created) must to be used to execute this script, because this user
 # belong to the sudo users group, due to will run a docker-compose file.
 #
-# Before execute this script file, it is mandatory to configurate the environment variables file (.env) located in user directory.
+# Before execute this script file, it is mandatory to configurate the environment variables file (.env) located in
+# user directory.
 #
 ######################################################################################
 ######################################################################################
