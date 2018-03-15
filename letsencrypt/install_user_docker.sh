@@ -40,7 +40,7 @@ usermod -aG sudo $nombre
 
 echo -e "\n"
 echo -e "\n"
-echo "** The $nombre user belong to the follow groups:"
+echo "** The $nombre user belong to the followin groups:"
 groups $nombre
 echo -e "\n"
 echo -e "\n"
@@ -67,7 +67,7 @@ echo -e "\n"
 apt-get update
 echo -e "\n"
 
-usermod -aG docker $nombre
+usermod -a -G docker $nombre
 echo "** The $nombre user belong to the follow groups:"
 groups $nombre
 echo -e "\n"
@@ -98,3 +98,5 @@ echo -e "\n"
 echo -e "*******************************************************************************************"
 echo "  Please, after that you should run the ./install_application.sh with the newly created user ($nombre)"
 echo -e "*******************************************************************************************"
+
+exit

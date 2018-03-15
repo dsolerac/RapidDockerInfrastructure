@@ -25,13 +25,14 @@ if ["$answer1" == "no"]; then
     echo "** Please, confirm if the actual running user this script is correct."
     echo -e "\n"
     exit 1
-else
-    echo "** ok, continue executing with the $USER user..."
-    echo "** The $USER user belong to the follow groups:"
-    groups $USER
-    echo -e "\n"
-    echo -e "\n"
 fi
+
+echo "** ok, continue executing with the $USER user..."
+echo "** The $USER user belong to the follow groups:"
+groups $USER
+echo -e "\n"
+echo -e "\n"
+
 
 # 1. Check if .env file exists
 if [ -e .env ]; then
@@ -50,11 +51,11 @@ if ["$answer2" == "no"]; then
     echo "** Please, customize your environment file (./.env) file properly."
     echo -e "\n"
     exit 1
-else
-    echo "** ok, continue executing the script..."
-    echo -e "\n"
-    echo -e "\n"
 fi
+
+echo "** ok, continue executing the script..."
+echo -e "\n"
+echo -e "\n"
 
 
 # 2. Create docker network
