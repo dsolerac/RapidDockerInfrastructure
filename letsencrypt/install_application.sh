@@ -16,10 +16,10 @@
 ######################################################################################
 ######################################################################################
 
-echo "** Are you running this script with a properly user, like the user created before (not root)? (yes or no)"
+echo "** Are you running this script with a properly user, like the user created before (not root)? [y/n]"
 read answer1
 
-if ["$answer1" == "no"]; then
+if ["$answer1" == "n"]; then
     clear
     echo -e "\n"
     echo "** Please, confirm if the actual running user this script is correct."
@@ -27,6 +27,7 @@ if ["$answer1" == "no"]; then
     exit 1
 fi
 
+clear
 echo "** ok, continue executing with the $USER user..."
 echo "** The $USER user belong to the follow groups:"
 groups $USER
@@ -42,10 +43,10 @@ else
     exit 1
 fi
 
-echo "** have you customized your ./.env file, properly? (yes or no)"
+echo "** have you customized your ./.env file, properly? [y/n]"
 read answer2
 
-if ["$answer2" == "no"]; then
+if ["$answer2" == "n"]; then
     clear
     echo -e "\n"
     echo "** Please, customize your environment file (./.env) file properly."
@@ -53,6 +54,7 @@ if ["$answer2" == "no"]; then
     exit 1
 fi
 
+clear
 echo "** ok, continue executing the script..."
 echo -e "\n"
 echo -e "\n"

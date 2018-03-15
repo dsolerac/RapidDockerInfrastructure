@@ -46,7 +46,7 @@ echo -e "\n"
 echo -e "\n"
 
 echo -e "***********************************"
-echo "  Installing docker in ubuntu xenial ..."
+echo "  Installing docker in ubuntu ..."
 echo -e "***********************************"
 
 apt-get update
@@ -93,40 +93,13 @@ echo -e "\n"
 
 su - $nombre -c "docker --version"
 echo "** docker was installed succesfully"
-
-
-##sh -c "echo deb https://apt.dockerproject.org/repo ubuntu-xenial main > /etc/apt/sources.list.d/docker.list"
-#sudo add-apt-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main'
-#echo -e "\n"
-#more /etc/apt/sources.list.d/docker.list
-#echo -e "\n"
-#echo -e "\n"
-#
-#apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys
-#echo -e "\n"
-#
-#apt-get install docker-engine
-#echo -e "\n"
-#
-#apt-get update
-#echo -e "\n"
-#
-#usermod -a -G docker $nombre
-#echo "** The $nombre user belong to the follow groups:"
-#groups $nombre
-#echo -e "\n"
-#echo -e "\n"
-#
-#su - $nombre -c "docker --version"
-#echo "** docker was installed succesfully"
-
-
 echo -e "\n"
 echo -e "\n"
-echo -e "**********************************************************************"
-echo "  Installing docker-compose (1.19.0) in ubuntu xenial ..."
-echo -e "**********************************************************************"
 
+
+echo -e "**********************************************************************"
+echo "  Installing docker-compose (1.19.0) in ubuntu ..."
+echo -e "**********************************************************************"
 
 curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
@@ -140,7 +113,8 @@ echo "** docker-compose was installed succesfully"
 echo -e "\n"
 echo -e "\n"
 echo -e "*******************************************************************************************"
-echo "  Please, after that you should run the ./install_application.sh with the newly created user ($nombre)"
+echo "  ¡¡¡¡¡Please, to finish the installation you must exit of this current bash!!!!!"
+echo "  After that, you should run the ./install_application.sh with the newly created user ($nombre)"
 echo -e "*******************************************************************************************"
 
 exit
