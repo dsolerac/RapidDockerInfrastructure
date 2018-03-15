@@ -42,9 +42,11 @@ echo -e "\n"
 echo -e "\n"
 echo "** The $nombre user belong to the follow groups:"
 groups $nombre
-
+echo -e "\n"
+echo -e "\n"
 
 apt-get upgrade
+echo -e "\n"
 apt install htop
 
 echo -e "\n"
@@ -54,14 +56,22 @@ echo "  Installing docker in ubuntu xenial ..."
 echo -e "***********************************"
 
 sh -c "echo deb https://apt.dockerproject.org/repo ubuntu-xenial main > /etc/apt/sources.list.d/docker.list"
+echo -e "\n"
 
 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys
+echo -e "\n"
 
 apt-get install docker-engine
+echo -e "\n"
 
 apt-get update
+echo -e "\n"
 
 usermod -aG docker $nombre
+echo "** The $nombre user belong to the follow groups:"
+groups $nombre
+echo -e "\n"
+echo -e "\n"
 
 su - $nombre -c "docker --version"
 echo "** docker was installed succesfully"

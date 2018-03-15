@@ -26,7 +26,8 @@ then
     echo "** Please, confirm if the actual running user this script is correct."
     echo -e "\n"
     exit 1
-else
+else if ["$answer1" == "yes"] || ["$answer1" == "YES"] || ["$answer1" == "Yes" ]
+then
     echo "** ok, continue executing with the $USER user"
 fi
 
@@ -41,12 +42,13 @@ fi
 echo "** have you customized your ./.env file, properly? (yes or no)"
 read answer2
 
-if [ "$answer2" == "" ] || ["$answer2" == "no"] || ["$answer2" == "NO"] || ["$answer2" == "No" ]; then
-clear
-echo -e "\n"
-echo "** Please, customize your environment file (./.env) file properly."
-echo -e "\n"
-exit 1
+if [ "$answer2" == "" ] || ["$answer2" == "no"] || ["$answer2" == "NO"] || ["$answer2" == "No" ]
+then
+    clear
+    echo -e "\n"
+    echo "** Please, customize your environment file (./.env) file properly."
+    echo -e "\n"
+    exit 1
 fi
 
 
