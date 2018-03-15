@@ -24,7 +24,7 @@ fi
 
 echo -e "\n"
 echo -e "\n"
-echo "** Please, enter the name of the new user to be created: "
+echo "** Please, enter the name of the new user to be created, or an exits user to be modified: "
 read nombre
 
 if [ "$nombre" == "" ] ; then
@@ -84,5 +84,5 @@ echo "** docker-compose was installed succesfully"
 echo -e "\n"
 echo -e "\n"
 echo -e "*******************************************************************************************"
-echo "  Please after that, run the ./install_application.sh with the newly created user ($nombre)"
+echo "  Please, after that you should run the ./install_application.sh with the newly created user ($nombre)"
 echo -e "*******************************************************************************************"

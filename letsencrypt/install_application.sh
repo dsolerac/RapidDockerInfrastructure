@@ -16,15 +16,18 @@
 ######################################################################################
 ######################################################################################
 
-echo "** Are you running this script with a properly user, like the user created before (not root)?"
+echo "** Are you running this script with a properly user, like the user created before (not root)? (yes or no)"
 read answer1
 
-if [ "$answer1" == "" ] || ["$answer1" == "no"] || ["$answer1" == "NO"] || ["$answer1" == "No" ]; then
-clear
-echo -e "\n"
-echo "** Please, confirm if the actual running user this script is correct."
-echo -e "\n"
-exit 1
+if [ "$answer1" == "" ] || ["$answer1" == "no"] || ["$answer1" == "NO"] || ["$answer1" == "No" ]
+then
+    clear
+    echo -e "\n"
+    echo "** Please, confirm if the actual running user this script is correct."
+    echo -e "\n"
+    exit 1
+else
+    echo "** ok, continue executing with the $USER user"
 fi
 
 # 1. Check if .env file exists
@@ -35,7 +38,7 @@ else
     exit 1
 fi
 
-echo "** have you customized your ./.env file, properly?"
+echo "** have you customized your ./.env file, properly? (yes or no)"
 read answer2
 
 if [ "$answer2" == "" ] || ["$answer2" == "no"] || ["$answer2" == "NO"] || ["$answer2" == "No" ]; then
